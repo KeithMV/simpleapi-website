@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleAPI - Essential APIs for Modern Developers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Navigation -->
+    <header class="border-b">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
+            <div class="flex gap-4">
+                <button onclick="showSignup()" class="text-gray-600 hover:text-gray-800">Sign In</button>
+                <button onclick="showSignup()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Get Started Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <!-- Hero Section -->
+        <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <h1 class="text-5xl font-bold mb-6 text-gray-900">
+                    Essential APIs for<br/>
+                    <span class="text-blue-600">Modern Developers</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Stop building email validation, PDF generation, and image processing from scratch. 
+                    Get production-ready APIs that just work, starting at $0.005 per call.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <button onclick="showSignup()" class="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 font-medium text-lg flex items-center gap-2">
+                        Start Free Trial <span>→</span>
+                    </button>
+                    <div class="text-sm text-gray-600">
+                        1,000 free calls/month • No credit card required
+                    </div>
+                </div>
+
+                <!-- Code Example -->
+                <div class="bg-gray-900 rounded-lg p-6 text-left max-w-2xl mx-auto">
+                    <div class="text-gray-400 text-sm mb-2">// Validate an email in seconds</div>
+                    <div class="text-green-400 text-sm font-mono">
+                        <div>const response = await fetch('https://api.simpleapi.com/validate-email', {</div>
+                        <div>&nbsp;&nbsp;method: 'POST',</div>
+                        <div>&nbsp;&nbsp;headers: { 'Authorization': 'Bearer your-api-key' },</div>
+                        <div>&nbsp;&nbsp;body: JSON.stringify({ email: 'user@example.com' }) </div>
+                        <div>});</div>
+                        <div class="mt-2">const result = await response.json();</div>
+                        <div>// { "valid": true, "deliverable": true, "risk_score": 0.1 }</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APIs Section -->
+        <section class="py-16">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Production-Ready APIs</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6">
+                        <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-blue-600 text-2xl">✓</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Email Validation</h3>
+                        <p class="text-gray-600 mb-4">Verify email deliverability, detect disposable addresses, and reduce bounce rates.</p>
+                        <div class="text-lg font-bold text-green-600">$0.01/call</div>
+                    </div>
+                    
+                    <div class="text-center p-6">
+                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-green-600 text-2xl">{ }</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">HTML to PDF</h3>
+                        <p class="text-gray-600 mb-4">Convert HTML content to high-quality PDFs with custom styling and headers.</p>
+                        <div class="text-lg font-bold text-green-600">$0.03/call</div>
+                    </div>
+                    
+                    <div class="text-center p-6">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-purple-600 text-2xl">⚡</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Image Processing</h3>
+                        <p class="text-gray-600 mb-4">Resize, optimize, and convert images in multiple formats instantly.</p>
+                        <div class="text-lg font-bold text-green-600">$0.005/call</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">99.9%</div>
+                        <div class="text-gray-600">Uptime Guarantee</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">&lt; 200ms</div>
+                        <div class="text-gray-600">Average Response Time</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">2.5M+</div>
+                        <div class="text-gray-600">API Calls Processed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">Ready to Save Development Time?</h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Join hundreds of developers who chose SimpleAPI over building their own solutions.
+                </p>
+                <button onclick="showSignup()" class="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 font-medium text-lg">
+                    Get Your Free API Key
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <div class="text-lg font-semibold mb-2">SimpleAPI</div>
+                <p class="text-gray-400">Essential APIs for modern developers</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Signup Page -->
+    <div id="signup-page" class="hidden min-h-screen bg-gray-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg border p-8 w-full max-w-md">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-blue-600 mb-2">SimpleAPI</h2>
+                <p class="text-gray-600">Get your free API key in seconds</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input
+                        type="email"
+                        id="signup-email"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        placeholder="you@company.com"
+                    />
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-1">Password</label>
+                    <input
+                        type="password"
+                        id="signup-password"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        placeholder="Create a password"
+                    />
+                </div>
+                
+                <button
+                    onclick="handleSignup()"
+                    class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium"
+                >
+                    Create Free Account
+                </button>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Already have an account? 
+                    <button onclick="showLanding()" class="text-blue-600 hover:underline ml-1">
+                        Sign in
+                    </button>
+                </p>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t">
+                <div class="text-xs text-gray-500 text-center">
+                    ✓ 1,000 free API calls/month<br/>
+                    ✓ No credit card required<br/>
+                    ✓ Instant API key
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="hidden min-h-screen bg-gray-50">
+        <div class="bg-white border-b">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-600" id="user-email"></span>
+                    <button onclick="showLanding()" class="text-sm bg-gray-100 px-3 py-1 rounded">
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <h1 class="text-3xl font-bold mb-8">Dashboard</h1>
+            
+            <!-- API Key Section -->
+            <div class="bg-white rounded-lg border p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Your API Key</h2>
+                <div class="flex items-center gap-3 mb-4">
+                    <code class="bg-gray-100 px-3 py-2 rounded flex-1 font-mono text-sm" id="api-key-display">
+                        sk_live_test123456789
+                    </code>
+                    <button onclick="copyApiKey()" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        📋 <span id="copy-text">Copy</span>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600">Keep this secret! Use it in your Authorization header.</p>
+            </div>
+
+            <!-- Usage Stats -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-lg border p-6">
+                    <h3 class="text-lg font-semibold mb-4">Current Usage</h3>
+                    <div class="text-3xl font-bold text-blue-600 mb-2">847</div>
+                    <div class="text-gray-600">of 1,000 calls this month</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-4">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 84.7%"></div>
+                    </div>
+                    <div class="mt-4 p-3 bg-orange-50 border border-orange-200 rounded">
+                        <p class="text-orange-800 text-sm">⚠️ You're close to your limit! Consider upgrading.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg border p-6">
+                    <h3 class="text-lg font-semibold mb-4">Current Plan</h3>
+                    <div class="text-2xl font-bold mb-2">Free Plan</div>
+                    <div class="text-gray-600 mb-4">1,000 calls/month • Basic support</div>
+                    <button onclick="showUpgrade()" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                        Upgrade Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- API Test Section -->
+            <div class="bg-white rounded-lg border p-6">
+                <h3 class="text-lg font-semibold mb-4">Test Your API</h3>
+                <div class="flex gap-4 mb-4">
+                    <input
+                        type="email"
+                        id="test-email"
+                        placeholder="test@example.com"
+                        class="flex-1 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    />
+                    <button onclick="testAPI()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                        Test Email Validation
+                    </button>
+                </div>
+                <div id="api-result" class="hidden bg-gray-50 p-4 rounded mt-4">
+                    <pre id="api-response" class="text-sm overflow-x-auto"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Your actual API endpoint
+        const API_ENDPOINT = 'https://v0kou7j79a.execute-api.us-east-1.amazonaws.com/default/email-validation-api';
+        
+        function showLanding() {
+            document.getElementById('landing-page').classList.remove('hidden');
+            document.getElementById('signup-page').classList.add('hidden');
+            document.getElementById('dashboard-page').classList.add('hidden');
+        }
+
+        function showSignup() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('signup-page').classList.remove('hidden');
+            document.getElementById('dashboard-page').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('signup-page').classList.add('hidden');
+            document.getElementById('dashboard-page').classList.remove('hidden');
+        }
+
+        function showUpgrade() {
+            alert('Upgrade feature coming soon! This would integrate with Stripe for payments.');
+        }
+
+        function handleSignup() {
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // TODO: Connect to your Lambda function to create real users
+            document.getElementById('user-email').textContent = email;
+            showDashboard();
+        }
+
+        function copyApiKey() {
+            const apiKey = document.getElementById('api-key-display').textContent;
+            navigator.clipboard.writeText(apiKey);
+            document.getElementById('copy-text').textContent = 'Copied!';
+            setTimeout(() => {
+                document.getElementById('copy-text').textContent = 'Copy';
+            }, 2000);
+        }
+
+        async function testAPI() {
+            const email = document.getElementById('test-email').value;
+            if (!email) {
+                alert('Please enter an email to test');
+                return;
+            }
+
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer sk_live_test123456789',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+
+                const result = await response.json();
+                document.getElementById('api-response').textContent = JSON.stringify(result, null, 2);
+                document.getElementById('api-result').classList.remove('hidden');
+            } catch (error) {
+                document.getElementById('api-response').textContent = 'Error: ' + error.message;
+                document.getElementById('api-result').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
