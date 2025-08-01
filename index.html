@@ -9,10 +9,10 @@
 </head>
 <body class="min-h-screen bg-white">
     <!-- Navigation -->
-    <header class="border-b">
+    <header id="main-header" class="border-b">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
-            <div class="flex gap-4" id="nav-buttons">
+            <div class="flex gap-4">
                 <button onclick="showSignup()" class="text-gray-600 hover:text-gray-800">Sign In</button>
                 <button onclick="showSignup()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Get Started Free</button>
             </div>
@@ -194,12 +194,13 @@
 
     <!-- Dashboard Page -->
     <div id="dashboard-page" class="hidden min-h-screen bg-gray-50">
+        <!-- Dashboard Navigation (Only nav when on dashboard) -->
         <div class="bg-white border-b">
             <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-gray-600" id="user-email"></span>
-                    <button onclick="handleLogout()" class="text-sm bg-gray-100 px-3 py-1 rounded">
+                    <button onclick="handleLogout()" class="text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200">
                         Sign Out
                     </button>
                 </div>
@@ -284,42 +285,29 @@
                 document.getElementById('user-email').textContent = user.email;
                 updateUsageDisplay(user.usage || 847);
                 showDashboard();
-                updateNavForLoggedIn();
             }
-        }
-
-        function updateNavForLoggedIn() {
-            const navButtons = document.getElementById('nav-buttons');
-            navButtons.innerHTML = `
-                <button onclick="showDashboard()" class="text-gray-600 hover:text-gray-800">Dashboard</button>
-                <button onclick="handleLogout()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Sign Out</button>
-            `;
-        }
-
-        function updateNavForLoggedOut() {
-            const navButtons = document.getElementById('nav-buttons');
-            navButtons.innerHTML = `
-                <button onclick="showSignup()" class="text-gray-600 hover:text-gray-800">Sign In</button>
-                <button onclick="showSignup()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Get Started Free</button>
-            `;
         }
 
         function showLanding() {
             document.getElementById('landing-page').classList.remove('hidden');
             document.getElementById('signup-page').classList.add('hidden');
             document.getElementById('dashboard-page').classList.add('hidden');
+            document.getElementById('main-header').classList.remove('hidden');
         }
 
         function showSignup() {
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('signup-page').classList.remove('hidden');
             document.getElementById('dashboard-page').classList.add('hidden');
+            document.getElementById('main-header').classList.remove('hidden');
         }
 
         function showDashboard() {
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('signup-page').classList.add('hidden');
             document.getElementById('dashboard-page').classList.remove('hidden');
+            // Hide main header when on dashboard (dashboard has its own nav)
+            document.getElementById('main-header').classList.add('hidden');
         }
 
         function showUpgrade() {
@@ -347,12 +335,10 @@
             document.getElementById('user-email').textContent = email;
             updateUsageDisplay(user.usage);
             showDashboard();
-            updateNavForLoggedIn();
         }
 
         function handleLogout() {
             localStorage.removeItem('simpleapi_user');
-            updateNavForLoggedOut();
             showLanding();
         }
 
