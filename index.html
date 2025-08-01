@@ -75,7 +75,7 @@
                     
                     <div class="text-center p-6">
                         <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span class="text-green-600 text-2xl">{ }</span>
+                            <span class="text-green-600 text-2xl">📄</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">HTML to PDF</h3>
                         <p class="text-gray-600 mb-4">Convert HTML content to high-quality PDFs with custom styling and headers.</p>
@@ -84,7 +84,7 @@
                     
                     <div class="text-center p-6">
                         <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span class="text-purple-600 text-2xl">⚡</span>
+                            <span class="text-purple-600 text-2xl">🖼️</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Image Processing</h3>
                         <p class="text-gray-600 mb-4">Resize, optimize, and convert images in multiple formats instantly.</p>
@@ -194,7 +194,7 @@
 
     <!-- Dashboard Page -->
     <div id="dashboard-page" class="hidden min-h-screen bg-gray-50">
-        <!-- Dashboard Navigation (Only nav when on dashboard) -->
+        <!-- Dashboard Navigation -->
         <div class="bg-white border-b">
             <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
@@ -248,30 +248,120 @@
                 </div>
             </div>
 
-            <!-- API Test Section -->
-            <div class="bg-white rounded-lg border p-6">
-                <h3 class="text-lg font-semibold mb-4">Test Your API</h3>
-                <div class="flex gap-4 mb-4">
-                    <input
-                        type="email"
-                        id="test-email"
-                        placeholder="test@example.com"
-                        class="flex-1 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    />
-                    <button onclick="testAPI()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-                        Test Email Validation
-                    </button>
+            <!-- API Test Sections -->
+            <div class="space-y-8">
+                <!-- Email Validation API Test -->
+                <div class="bg-white rounded-lg border p-6">
+                    <h3 class="text-lg font-semibold mb-4">🔍 Test Email Validation API</h3>
+                    <div class="flex gap-4 mb-4">
+                        <input
+                            type="email"
+                            id="test-email"
+                            placeholder="test@example.com"
+                            class="flex-1 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        />
+                        <button onclick="testEmailAPI()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                            Validate Email ($0.01)
+                        </button>
+                    </div>
+                    <div id="email-result" class="hidden bg-gray-50 p-4 rounded mt-4">
+                        <pre id="email-response" class="text-sm overflow-x-auto"></pre>
+                    </div>
                 </div>
-                <div id="api-result" class="hidden bg-gray-50 p-4 rounded mt-4">
-                    <pre id="api-response" class="text-sm overflow-x-auto"></pre>
+
+                <!-- HTML to PDF API Test -->
+                <div class="bg-white rounded-lg border p-6">
+                    <h3 class="text-lg font-semibold mb-4">📄 Test HTML to PDF API</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">HTML Content</label>
+                            <textarea
+                                id="test-html"
+                                placeholder="<h1>Hello World</h1><p>This will become a PDF!</p>"
+                                class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600 h-32"
+                            ></textarea>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Format</label>
+                                <select id="pdf-format" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                    <option value="A4">A4</option>
+                                    <option value="Letter">Letter</option>
+                                    <option value="Legal">Legal</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Orientation</label>
+                                <select id="pdf-orientation" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                    <option value="portrait">Portrait</option>
+                                    <option value="landscape">Landscape</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="testPDFAPI()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+                            Generate PDF ($0.03)
+                        </button>
+                    </div>
+                    <div id="pdf-result" class="hidden bg-gray-50 p-4 rounded mt-4">
+                        <pre id="pdf-response" class="text-sm overflow-x-auto"></pre>
+                    </div>
+                </div>
+
+                <!-- Image Processing API Test -->
+                <div class="bg-white rounded-lg border p-6">
+                    <h3 class="text-lg font-semibold mb-4">🖼️ Test Image Processing API</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Image URL</label>
+                            <input
+                                type="url"
+                                id="test-image-url"
+                                placeholder="https://example.com/image.jpg"
+                                class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            />
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Width</label>
+                                <input type="number" id="image-width" placeholder="800" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Height</label>
+                                <input type="number" id="image-height" placeholder="600" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Quality</label>
+                                <input type="number" id="image-quality" placeholder="85" min="1" max="100" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" id="image-optimize" checked class="rounded" />
+                                <span class="text-sm">Optimize for web</span>
+                            </label>
+                            <select id="image-format" class="px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WebP</option>
+                            </select>
+                        </div>
+                        <button onclick="testImageAPI()" class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">
+                            Process Image ($0.005)
+                        </button>
+                    </div>
+                    <div id="image-result" class="hidden bg-gray-50 p-4 rounded mt-4">
+                        <pre id="image-response" class="text-sm overflow-x-auto"></pre>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Your actual API endpoint
-        const API_ENDPOINT = 'https://v0kou7j79a.execute-api.us-east-1.amazonaws.com/default/email-validation-api';
+        // API endpoints - All 3 APIs ready to use!
+        const EMAIL_API_ENDPOINT = 'https://v0kou7j79a.execute-api.us-east-1.amazonaws.com/default/email-validation-api';
+        const PDF_API_ENDPOINT = 'https://bzmz7wktel.execute-api.us-east-1.amazonaws.com/default/html-to-pdf-api';
+        const IMAGE_API_ENDPOINT = 'https://4531ca9ola.execute-api.us-east-1.amazonaws.com/default/image-processing-api';
         
         // Check for existing session on page load
         window.addEventListener('DOMContentLoaded', function() {
@@ -306,7 +396,6 @@
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('signup-page').classList.add('hidden');
             document.getElementById('dashboard-page').classList.remove('hidden');
-            // Hide main header when on dashboard (dashboard has its own nav)
             document.getElementById('main-header').classList.add('hidden');
         }
 
@@ -323,11 +412,10 @@
                 return;
             }
             
-            // Create user object and save to localStorage
             const user = {
                 email: email,
                 signupDate: new Date().toISOString(),
-                usage: 847 // Starting usage for demo
+                usage: 847
             };
             
             localStorage.setItem('simpleapi_user', JSON.stringify(user));
@@ -357,7 +445,18 @@
             }, 2000);
         }
 
-        async function testAPI() {
+        function incrementUsage() {
+            const savedUser = localStorage.getItem('simpleapi_user');
+            if (savedUser) {
+                const user = JSON.parse(savedUser);
+                user.usage = (user.usage || 847) + 1;
+                localStorage.setItem('simpleapi_user', JSON.stringify(user));
+                updateUsageDisplay(user.usage);
+            }
+        }
+
+        // Email Validation API Test
+        async function testEmailAPI() {
             const email = document.getElementById('test-email').value;
             if (!email) {
                 alert('Please enter an email to test');
@@ -365,7 +464,7 @@
             }
 
             try {
-                const response = await fetch(API_ENDPOINT, {
+                const response = await fetch(EMAIL_API_ENDPOINT, {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer sk_live_test123456789',
@@ -375,21 +474,86 @@
                 });
 
                 const result = await response.json();
-                document.getElementById('api-response').textContent = JSON.stringify(result, null, 2);
-                document.getElementById('api-result').classList.remove('hidden');
-
-                // Update usage count
-                const savedUser = localStorage.getItem('simpleapi_user');
-                if (savedUser) {
-                    const user = JSON.parse(savedUser);
-                    user.usage = (user.usage || 847) + 1;
-                    localStorage.setItem('simpleapi_user', JSON.stringify(user));
-                    updateUsageDisplay(user.usage);
-                }
+                document.getElementById('email-response').textContent = JSON.stringify(result, null, 2);
+                document.getElementById('email-result').classList.remove('hidden');
+                incrementUsage();
 
             } catch (error) {
-                document.getElementById('api-response').textContent = 'Error: ' + error.message;
-                document.getElementById('api-result').classList.remove('hidden');
+                document.getElementById('email-response').textContent = 'Error: ' + error.message;
+                document.getElementById('email-result').classList.remove('hidden');
+            }
+        }
+
+        // HTML to PDF API Test
+        async function testPDFAPI() {
+            const html = document.getElementById('test-html').value;
+            if (!html) {
+                alert('Please enter HTML content to convert');
+                return;
+            }
+
+            const options = {
+                format: document.getElementById('pdf-format').value,
+                orientation: document.getElementById('pdf-orientation').value
+            };
+
+            try {
+                const response = await fetch(PDF_API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer sk_live_test123456789',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ html: html, options: options })
+                });
+
+                const result = await response.json();
+                document.getElementById('pdf-response').textContent = JSON.stringify(result, null, 2);
+                document.getElementById('pdf-result').classList.remove('hidden');
+                incrementUsage();
+
+            } catch (error) {
+                document.getElementById('pdf-response').textContent = 'Error: ' + error.message;
+                document.getElementById('pdf-result').classList.remove('hidden');
+            }
+        }
+
+        // Image Processing API Test
+        async function testImageAPI() {
+            const imageUrl = document.getElementById('test-image-url').value;
+            if (!imageUrl) {
+                alert('Please enter an image URL to process');
+                return;
+            }
+
+            const operations = {
+                resize: {
+                    width: parseInt(document.getElementById('image-width').value) || 800,
+                    height: parseInt(document.getElementById('image-height').value) || 600
+                },
+                format: document.getElementById('image-format').value,
+                quality: parseInt(document.getElementById('image-quality').value) || 85,
+                optimize: document.getElementById('image-optimize').checked
+            };
+
+            try {
+                const response = await fetch(IMAGE_API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer sk_live_test123456789',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ image_url: imageUrl, operations: operations })
+                });
+
+                const result = await response.json();
+                document.getElementById('image-response').textContent = JSON.stringify(result, null, 2);
+                document.getElementById('image-result').classList.remove('hidden');
+                incrementUsage();
+
+            } catch (error) {
+                document.getElementById('image-response').textContent = 'Error: ' + error.message;
+                document.getElementById('image-result').classList.remove('hidden');
             }
         }
     </script>
