@@ -12,7 +12,7 @@
     <header class="border-b">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
-            <div class="flex gap-4">
+            <div class="flex gap-4" id="nav-buttons">
                 <button onclick="showSignup()" class="text-gray-600 hover:text-gray-800">Sign In</button>
                 <button onclick="showSignup()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Get Started Free</button>
             </div>
@@ -199,7 +199,7 @@
                 <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-gray-600" id="user-email"></span>
-                    <button onclick="showLanding()" class="text-sm bg-gray-100 px-3 py-1 rounded">
+                    <button onclick="handleLogout()" class="text-sm bg-gray-100 px-3 py-1 rounded">
                         Sign Out
                     </button>
                 </div>
@@ -227,10 +227,10 @@
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <div class="bg-white rounded-lg border p-6">
                     <h3 class="text-lg font-semibold mb-4">Current Usage</h3>
-                    <div class="text-3xl font-bold text-blue-600 mb-2">847</div>
+                    <div class="text-3xl font-bold text-blue-600 mb-2" id="usage-count">847</div>
                     <div class="text-gray-600">of 1,000 calls this month</div>
                     <div class="w-full bg-gray-200 rounded-full h-2 mt-4">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 84.7%"></div>
+                        <div class="bg-blue-600 h-2 rounded-full" id="usage-bar" style="width: 84.7%"></div>
                     </div>
                     <div class="mt-4 p-3 bg-orange-50 border border-orange-200 rounded">
                         <p class="text-orange-800 text-sm">⚠️ You're close to your limit! Consider upgrading.</p>
@@ -272,6 +272,38 @@
         // Your actual API endpoint
         const API_ENDPOINT = 'https://v0kou7j79a.execute-api.us-east-1.amazonaws.com/default/email-validation-api';
         
+        // Check for existing session on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            checkExistingSession();
+        });
+
+        function checkExistingSession() {
+            const savedUser = localStorage.getItem('simpleapi_user');
+            if (savedUser) {
+                const user = JSON.parse(savedUser);
+                document.getElementById('user-email').textContent = user.email;
+                updateUsageDisplay(user.usage || 847);
+                showDashboard();
+                updateNavForLoggedIn();
+            }
+        }
+
+        function updateNavForLoggedIn() {
+            const navButtons = document.getElementById('nav-buttons');
+            navButtons.innerHTML = `
+                <button onclick="showDashboard()" class="text-gray-600 hover:text-gray-800">Dashboard</button>
+                <button onclick="handleLogout()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Sign Out</button>
+            `;
+        }
+
+        function updateNavForLoggedOut() {
+            const navButtons = document.getElementById('nav-buttons');
+            navButtons.innerHTML = `
+                <button onclick="showSignup()" class="text-gray-600 hover:text-gray-800">Sign In</button>
+                <button onclick="showSignup()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Get Started Free</button>
+            `;
+        }
+
         function showLanding() {
             document.getElementById('landing-page').classList.remove('hidden');
             document.getElementById('signup-page').classList.add('hidden');
@@ -303,9 +335,31 @@
                 return;
             }
             
-            // TODO: Connect to your Lambda function to create real users
+            // Create user object and save to localStorage
+            const user = {
+                email: email,
+                signupDate: new Date().toISOString(),
+                usage: 847 // Starting usage for demo
+            };
+            
+            localStorage.setItem('simpleapi_user', JSON.stringify(user));
+            
             document.getElementById('user-email').textContent = email;
+            updateUsageDisplay(user.usage);
             showDashboard();
+            updateNavForLoggedIn();
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('simpleapi_user');
+            updateNavForLoggedOut();
+            showLanding();
+        }
+
+        function updateUsageDisplay(usage) {
+            document.getElementById('usage-count').textContent = usage;
+            const percentage = (usage / 1000) * 100;
+            document.getElementById('usage-bar').style.width = percentage + '%';
         }
 
         function copyApiKey() {
@@ -337,6 +391,16 @@
                 const result = await response.json();
                 document.getElementById('api-response').textContent = JSON.stringify(result, null, 2);
                 document.getElementById('api-result').classList.remove('hidden');
+
+                // Update usage count
+                const savedUser = localStorage.getItem('simpleapi_user');
+                if (savedUser) {
+                    const user = JSON.parse(savedUser);
+                    user.usage = (user.usage || 847) + 1;
+                    localStorage.setItem('simpleapi_user', JSON.stringify(user));
+                    updateUsageDisplay(user.usage);
+                }
+
             } catch (error) {
                 document.getElementById('api-response').textContent = 'Error: ' + error.message;
                 document.getElementById('api-result').classList.remove('hidden');
