@@ -358,10 +358,10 @@
     </div>
 
     <script>
-        // API endpoints - All 3 APIs ready to use!
+        // API endpoints - you'll need to update these once you deploy the new Lambda functions
         const EMAIL_API_ENDPOINT = 'https://v0kou7j79a.execute-api.us-east-1.amazonaws.com/default/email-validation-api';
-        const PDF_API_ENDPOINT = 'https://bzmz7wktel.execute-api.us-east-1.amazonaws.com/default/html-to-pdf-api';
-        const IMAGE_API_ENDPOINT = 'https://4531ca9ola.execute-api.us-east-1.amazonaws.com/default/image-processing-api';
+        const PDF_API_ENDPOINT = 'https://YOUR-PDF-API-GATEWAY-URL/default/html-to-pdf-api';
+        const IMAGE_API_ENDPOINT = 'https://YOUR-IMAGE-API-GATEWAY-URL/default/image-processing-api';
         
         // Check for existing session on page load
         window.addEventListener('DOMContentLoaded', function() {
@@ -513,7 +513,7 @@
                 incrementUsage();
 
             } catch (error) {
-                document.getElementById('pdf-response').textContent = 'Error: ' + error.message;
+                document.getElementById('pdf-response').textContent = 'Error: ' + error.message + '\n\nNote: You need to deploy the HTML to PDF Lambda function first!';
                 document.getElementById('pdf-result').classList.remove('hidden');
             }
         }
@@ -552,7 +552,7 @@
                 incrementUsage();
 
             } catch (error) {
-                document.getElementById('image-response').textContent = 'Error: ' + error.message;
+                document.getElementById('image-response').textContent = 'Error: ' + error.message + '\n\nNote: You need to deploy the Image Processing Lambda function first!';
                 document.getElementById('image-result').classList.remove('hidden');
             }
         }
