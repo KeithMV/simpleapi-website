@@ -64,32 +64,45 @@
                 <h2 class="text-3xl font-bold text-center mb-12">Production-Ready APIs</h2>
                 
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="text-center p-6">
+                    <div class="text-center p-6 border rounded-lg hover:shadow-lg transition-shadow">
                         <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                             <span class="text-blue-600 text-2xl">✓</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Email Validation</h3>
                         <p class="text-gray-600 mb-4">Verify email deliverability, detect disposable addresses, and reduce bounce rates.</p>
-                        <div class="text-lg font-bold text-green-600">$0.01/call</div>
+                        <div class="text-lg font-bold text-green-600 mb-2">$0.01/call</div>
+                        <div class="text-xs text-gray-500">✅ Live & Working</div>
                     </div>
                     
-                    <div class="text-center p-6">
+                    <div class="text-center p-6 border rounded-lg hover:shadow-lg transition-shadow">
                         <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                             <span class="text-green-600 text-2xl">📄</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">HTML to PDF</h3>
                         <p class="text-gray-600 mb-4">Convert HTML content to high-quality PDFs with custom styling and headers.</p>
-                        <div class="text-lg font-bold text-green-600">$0.03/call</div>
+                        <div class="text-lg font-bold text-green-600 mb-2">$0.03/call</div>
+                        <div class="text-xs text-gray-500">✅ Live & Working</div>
                     </div>
                     
-                    <div class="text-center p-6">
+                    <div class="text-center p-6 border rounded-lg hover:shadow-lg transition-shadow">
                         <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                             <span class="text-purple-600 text-2xl">🖼️</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Image Processing</h3>
                         <p class="text-gray-600 mb-4">Resize, optimize, and convert images in multiple formats instantly.</p>
-                        <div class="text-lg font-bold text-green-600">$0.005/call</div>
+                        <div class="text-lg font-bold text-green-600 mb-2">$0.005/call</div>
+                        <div class="text-xs text-gray-500">✅ Live & Working</div>
                     </div>
+                </div>
+
+                <!-- Combined Revenue Example -->
+                <div class="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 text-center">
+                    <h3 class="text-xl font-semibold mb-2">💰 Revenue Example</h3>
+                    <p class="text-gray-600 mb-4">A customer processing 1,000 emails + 100 PDFs + 500 images monthly:</p>
+                    <div class="text-2xl font-bold text-green-600">
+                        $10 + $3 + $2.50 = <span class="text-3xl">$15.50/month</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Scale to 100 customers = $1,550/month recurring revenue!</p>
                 </div>
             </div>
         </section>
@@ -97,7 +110,11 @@
         <!-- Stats Section -->
         <section class="py-16 bg-gray-50">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">3</div>
+                        <div class="text-gray-600">Production APIs</div>
+                    </div>
                     <div>
                         <div class="text-4xl font-bold text-blue-600 mb-2">99.9%</div>
                         <div class="text-gray-600">Uptime Guarantee</div>
@@ -107,8 +124,8 @@
                         <div class="text-gray-600">Average Response Time</div>
                     </div>
                     <div>
-                        <div class="text-4xl font-bold text-blue-600 mb-2">2.5M+</div>
-                        <div class="text-gray-600">API Calls Processed</div>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">Node.js 20</div>
+                        <div class="text-gray-600">Future-Proof Runtime</div>
                     </div>
                 </div>
             </div>
@@ -184,9 +201,9 @@
             
             <div class="mt-6 pt-6 border-t">
                 <div class="text-xs text-gray-500 text-center">
-                    ✓ 1,000 free API calls/month<br/>
-                    ✓ No credit card required<br/>
-                    ✓ Instant API key
+                    ✅ 1,000 free calls/month<br/>
+                    ✅ No credit card required<br/>
+                    ✅ Instant API key
                 </div>
             </div>
         </div>
@@ -197,7 +214,7 @@
         <!-- Dashboard Navigation -->
         <div class="bg-white border-b">
             <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="text-2xl font-bold text-blue-600">SimpleAPI</div>
+                <div class="text-2xl font-bold text-blue-600">SimpleAPI Dashboard</div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-gray-600" id="user-email"></span>
                     <button onclick="handleLogout()" class="text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200">
@@ -208,7 +225,7 @@
         </div>
 
         <div class="max-w-6xl mx-auto px-6 py-8">
-            <h1 class="text-3xl font-bold mb-8">Dashboard</h1>
+            <h1 class="text-3xl font-bold mb-8">API Dashboard</h1>
             
             <!-- API Key Section -->
             <div class="bg-white rounded-lg border p-6 mb-8">
@@ -221,7 +238,7 @@
                         📋 <span id="copy-text">Copy</span>
                     </button>
                 </div>
-                <p class="text-sm text-gray-600">Keep this secret! Use it in your Authorization header.</p>
+                <p class="text-sm text-gray-600">Keep this secret! Use it in your Authorization header for all API calls.</p>
             </div>
 
             <!-- Usage Stats -->
@@ -316,9 +333,10 @@
                             <input
                                 type="url"
                                 id="test-image-url"
-                                placeholder="https://example.com/image.jpg"
+                                placeholder="https://picsum.photos/1200/800"
                                 class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
                             />
+                            <p class="text-xs text-gray-500 mt-1">Try: https://picsum.photos/1200/800 for a test image</p>
                         </div>
                         <div class="grid md:grid-cols-3 gap-4">
                             <div>
@@ -358,10 +376,10 @@
     </div>
 
     <script>
-        // API endpoints - you'll need to update these once you deploy the new Lambda functions
-        const EMAIL_API_ENDPOINT = 'https://v0kou7j79a.execute-api.us-east-1.amazonaws.com/default/email-validation-api';
-        const PDF_API_ENDPOINT = 'https://YOUR-PDF-API-GATEWAY-URL/default/html-to-pdf-api';
-        const IMAGE_API_ENDPOINT = 'https://YOUR-IMAGE-API-GATEWAY-URL/default/image-processing-api';
+        // ALL 3 PRODUCTION APIs - LIVE AND WORKING!
+        const EMAIL_API_ENDPOINT = 'https://ek60dk2uc9.execute-api.us-east-1.amazonaws.com/default/email-validation-api-v2';
+        const PDF_API_ENDPOINT = 'https://qmmakm9qzc.execute-api.us-east-1.amazonaws.com/default/html-to-pdf-api-v2';
+        const IMAGE_API_ENDPOINT = 'https://2l1dhxts87.execute-api.us-east-1.amazonaws.com/default/image-processing-api-v2';
         
         // Check for existing session on page load
         window.addEventListener('DOMContentLoaded', function() {
@@ -400,7 +418,7 @@
         }
 
         function showUpgrade() {
-            alert('Upgrade feature coming soon! This would integrate with Stripe for payments.');
+            alert('Upgrade feature coming soon! This would integrate with Stripe for payments.\n\nUpgrade Plans:\n• Starter: $19/month for 25,000 calls\n• Pro: $99/month for 200,000 calls');
         }
 
         function handleSignup() {
@@ -513,7 +531,7 @@
                 incrementUsage();
 
             } catch (error) {
-                document.getElementById('pdf-response').textContent = 'Error: ' + error.message + '\n\nNote: You need to deploy the HTML to PDF Lambda function first!';
+                document.getElementById('pdf-response').textContent = 'Error: ' + error.message;
                 document.getElementById('pdf-result').classList.remove('hidden');
             }
         }
@@ -552,7 +570,7 @@
                 incrementUsage();
 
             } catch (error) {
-                document.getElementById('image-response').textContent = 'Error: ' + error.message + '\n\nNote: You need to deploy the Image Processing Lambda function first!';
+                document.getElementById('image-response').textContent = 'Error: ' + error.message;
                 document.getElementById('image-result').classList.remove('hidden');
             }
         }
